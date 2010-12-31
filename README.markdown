@@ -11,20 +11,20 @@ That is why I develop myself tool, for easy, simple and correct. Try it, and hav
 
 1. Normal usage
 
-    python unzip.py file.zip
+        python unzip.py file.zip
 
 2. Extract zip file with password
 
-    python unzip.py -p password
+        python unzip.py -p password
 
 3. Default encoding is Traditional Chinese(cp950). For Simplified Chinese(cp936), assign 'cp936' to '-e'
 
-    python unzip.py -e cp936 -p password
+        python unzip.py -e cp936 -p password
 
 
 ## Required
 
-Python 2.6+
+- Python 2.6+
 
 
 
@@ -37,7 +37,7 @@ yftzeng _AT_ gmail.com
 
 ## License
 
-Dual license: MIT
+MIT License
 
 
 ## Link
