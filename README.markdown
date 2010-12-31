@@ -2,7 +2,7 @@
 
 The project is mainly on extract **Chinese/Japsnse/Korean(CJK)** zip files.
 
-In some linux distributions, such as Fedora/Ubuntu, there are few softwares can extract CJK filename correctly. I have tried 'unzip', 'peazip' and '7z-zip', but nothing helps.  In CJK communicity, many people suggest to patch 'unzip' project with "unzpriv.h". The method is hard for newbie, and the most important is even patched it still doesn't work.
+In some linux distributions, such as Fedora/Ubuntu, there are few softwares can extract CJK filename correctly. I have tried `unzip`, `peazip` and `7z-zip`, but nothing helps.  In CJK communicity, many people suggest to patch `unzip` project with `unzpriv.h`. The method is hard for newbie, and the most important is even patched it still doesn't work.
 
 That is why I develop myself tool, for easy, simple and correct. Try it, and have fun.
 
