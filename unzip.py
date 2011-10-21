@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Last modified: 2010 Dec 15 06:43:11 PM CST
+# Last modified: 2011 Oct 21 10:49:20 AM CST
 #
 # LICENSE:
 #   Copyright (c) 2010 Tzeng, Yi-Feng
-#   
+#
 #   Permission is hereby granted, free of charge, to any person obtaining
 #   a copy of this software and associated documentation files (the
 #   "Software"), to deal in the Software without restriction, including
@@ -12,10 +12,10 @@
 #   distribute, sublicense, and/or sell copies of the Software, and to
 #   permit persons to whom the Software is furnished to do so, subject to
 #   the following conditions:
-#   
+#
 #   The above copyright notice and this permission notice shall be
 #   included in all copies or substantial portions of the Software.
-#   
+#
 #   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 #   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 #   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -61,6 +61,10 @@ def main():
     shortargs = 'he:p:'
     longargs = ['help', 'encoding=', 'password=']
 
+    if len(sys.argv) < 2:
+        usage()
+        sys.exit()
+
     try:
         if sys.argv[1].startswith('-'):
             opts, args = getopt.getopt(sys.argv[1:], shortargs, longargs)
@@ -96,6 +100,8 @@ def main():
     for fileinfo in f.infolist():
         try:
             filename = unicode(fileinfo.filename, encoding)
+        except TypeError:
+            filename = fileinfo.filename
         except:
             print "ERROR: unknown encoding (" + encoding + ")"
             sys.exit(2)
