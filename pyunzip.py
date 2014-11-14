@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Last modified: 2011 Oct 21 10:49:20 AM CST
+# Last modified: 2014 Nov 15 01:02:59 AM CST
 #
 # LICENSE:
 #   Copyright (c) 2010 Tzeng, Yi-Feng
@@ -88,6 +88,10 @@ def main():
         if o in ("-p", "--password"):
             password = a
 
+    if not os.path.isfile(zipsource):
+        print "ERROR: (" + zipsource + ") file is not exist"
+        sys.exit(2)
+
     try:
         f = zipfile.ZipFile(zipsource, 'r')
     except zipfile.BadZipfile:
@@ -111,6 +115,8 @@ def main():
                 os.mkdir(filename)
                 print "Create : " + filename
         else:
+            if os.path.dirname(filename) != '' and not os.path.exists(os.path.dirname(filename)):
+                os.makedirs(os.path.dirname(filename))
             outputfile = open(filename, "wb")
             try:
                 shutil.copyfileobj(f.open(fileinfo.filename), outputfile)
