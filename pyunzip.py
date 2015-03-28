@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Last modified: 2014 Nov 15 01:02:59 AM CST
+# Last modified: 2015 Mar 29 12:48:52 AM CST
 #
 # LICENSE:
 #   Copyright (c) 2010 Tzeng, Yi-Feng
@@ -30,8 +30,8 @@
    Due to default unzip in linux platfrom can not extract cp950, cp936 encoding etc.
 """
 
-__version__ = "1.0"
-__revision__ = '1.2.1'
+__version__ = "1.3"
+__revision__ = '1.3.1'
 __author__ = "Tzeng, Yi-Feng"
 __authorcontact__ = "yftzeng@gmail.com"
 __website__ = "http://antbsd.twbbs.org/"
@@ -54,6 +54,10 @@ def usage():
     --verbose
     --encoding
     --password
+
+    :: encoding tips ::
+    cp950 (Traditional Chinese)
+    cp936 (Simplified Chinese)
 
     """
 
@@ -112,7 +116,7 @@ def main():
 
         if filename.endswith('/'):
             if not os.path.isdir(filename):
-                os.mkdir(filename)
+                os.makedirs(filename)
                 print "Create : " + filename
         else:
             if os.path.dirname(filename) != '' and not os.path.exists(os.path.dirname(filename)):
@@ -120,6 +124,10 @@ def main():
             outputfile = open(filename, "wb")
             try:
                 shutil.copyfileobj(f.open(fileinfo.filename), outputfile)
+            except (zipfile.BadZipfile), e:
+                # XXX: python extract zipfile encoding with cp936, will always raise BadZipfile except
+                if encoding != 'cp936':
+                    print e
             except:
                 print "ERROR: File is encrypted, password required for extraction (-p, --password)"
                 sys.exit(2)
